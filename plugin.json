@@ -16,14 +16,6 @@
         "QuickAdd 配置",
         "闪念配置"
       ]
-    },
-    {
-      "code": "refresh",
-      "explain": "重新读取 QuickAdd 配置并刷新 uTools 动态指令",
-      "cmds": [
-        "刷新 QuickAdd",
-        "同步 QuickAdd 指令"
-      ]
     }
   ]
 }

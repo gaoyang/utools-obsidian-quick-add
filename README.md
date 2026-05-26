@@ -30,8 +30,8 @@ obsidian://quickadd?vault=<Vault>&choice=<Choice>&value-<变量名>=<输入内�
 ## 注意
 
 - QuickAdd URI 只能填充命名变量，例如 `{{VALUE:value}}`。裸 `{{VALUE}}` / `{{NAME}}` 仍会在 Obsidian 内部弹出输入框。
-- 如果修改了 Obsidian 中的 QuickAdd choices，需要在 uTools 中执行 `刷新 QuickAdd` 或回配置页点击刷新。
-- 如果升级了插件代码，需要在配置页重新保存或执行 `刷新 QuickAdd`，让动态指令带上主输入框匹配能力。
+- 如果修改了 Obsidian 中的 QuickAdd choices，需要回到配置页重新点击 `保存并刷新指令`。
+- 如果升级了插件代码，也需要在配置页重新保存，让动态指令更新到最新行为。
 - 如果 Obsidian 没有被系统注册为 `obsidian://` 协议处理程序，请先打开一次 Obsidian 或重新安装 Obsidian。
 
 ## 开发检查

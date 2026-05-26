@@ -4,7 +4,7 @@ const crypto = require("crypto");
 const { shell } = require("electron");
 
 const STORAGE_KEY = "obsidianQuickAdd.settings";
-const STATIC_CODES = new Set(["settings", "refresh"]);
+const STATIC_CODES = new Set(["settings"]);
 
 function getDefaultSettings() {
   return {
@@ -282,13 +282,6 @@ if (window.utools) {
 
   window.utools.onPluginEnter(async (action) => {
     try {
-      if (action.code === "refresh") {
-        const settings = refreshChoices();
-        window.utools.showNotification(`已刷新 ${settings.choices.length} 个 QuickAdd 指令`);
-        publishAction({ view: "settings", refreshed: true });
-        return;
-      }
-
       const choiceAction = getChoiceAction(action);
       if (choiceAction && action.type === "over" && String(action.payload || "").trim()) {
         await runChoice({
