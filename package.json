@@ -4,7 +4,8 @@
   "private": true,
   "description": "uTools plugin for invoking Obsidian QuickAdd choices globally.",
   "scripts": {
-    "check": "node --check preload.js && node --check renderer.js"
+    "check": "node --check preload.js && node --check renderer.js",
+    "build": "node build.js"
   },
   "keywords": [
     "utools",

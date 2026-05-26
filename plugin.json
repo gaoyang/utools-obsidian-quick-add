@@ -1,8 +1,8 @@
 {
   "pluginName": "Obsidian QuickAdd",
   "description": "从 uTools 全局调用 Obsidian QuickAdd 指令，快速创建笔记和待办。",
-  "author": "Cursor",
-  "homepage": "https://quickadd.obsidian.guide/docs/Advanced/ObsidianUri/",
+  "author": "gaoyang",
+  "homepage": "https://github.com/gaoyang/utools-obsidian-quick-add",
   "version": "0.1.0",
   "main": "index.html",
   "logo": "logo.png",
