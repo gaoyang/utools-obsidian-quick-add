@@ -142,14 +142,20 @@ textarea:focus {
 .actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 10px;
   margin-top: 20px;
 }
 
 .status {
   min-height: 22px;
-  margin: 14px 0 0;
+  margin: 0;
   color: var(--muted);
+}
+
+.actions .status {
+  flex: 1;
+  min-width: 0;
 }
 
 .status.error {

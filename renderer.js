@@ -8,7 +8,6 @@ const elements = {
   choiceVariable: document.querySelector("#choice-variable"),
   choiceValue: document.querySelector("#choice-value"),
   runChoice: document.querySelector("#run-choice"),
-  openSettings: document.querySelector("#open-settings"),
   choiceStatus: document.querySelector("#choice-status"),
   detectedVaults: document.querySelector("#detected-vaults"),
   detectVaults: document.querySelector("#detect-vaults"),
@@ -184,7 +183,6 @@ function bindEvents() {
   });
 
   elements.saveSettings.addEventListener("click", saveSettings);
-  elements.openSettings.addEventListener("click", () => renderSettings());
   elements.runChoice.addEventListener("click", runCurrentChoice);
 
   elements.choiceValue.addEventListener("keydown", (event) => {
