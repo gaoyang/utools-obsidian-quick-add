@@ -186,7 +186,7 @@ function bindEvents() {
   elements.runChoice.addEventListener("click", runCurrentChoice);
 
   elements.choiceValue.addEventListener("keydown", (event) => {
-    if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+    if (event.key === "Enter") {
       event.preventDefault();
       runCurrentChoice();
     }
