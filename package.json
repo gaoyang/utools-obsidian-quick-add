@@ -1,0 +1,15 @@
+{
+  "name": "utools-obsidian-quick-add",
+  "version": "0.1.0",
+  "private": true,
+  "description": "uTools plugin for invoking Obsidian QuickAdd choices globally.",
+  "scripts": {
+    "check": "node --check preload.js && node --check renderer.js"
+  },
+  "keywords": [
+    "utools",
+    "obsidian",
+    "quickadd"
+  ],
+  "license": "MIT"
+}

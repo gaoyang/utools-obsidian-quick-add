@@ -1,0 +1,29 @@
+{
+  "pluginName": "Obsidian QuickAdd",
+  "description": "从 uTools 全局调用 Obsidian QuickAdd 指令，快速创建笔记和待办。",
+  "author": "Cursor",
+  "homepage": "https://quickadd.obsidian.guide/docs/Advanced/ObsidianUri/",
+  "version": "0.1.0",
+  "main": "index.html",
+  "logo": "logo.png",
+  "preload": "preload.js",
+  "features": [
+    {
+      "code": "settings",
+      "explain": "配置 Obsidian vault 并同步 QuickAdd choices",
+      "cmds": [
+        "Obsidian QuickAdd",
+        "QuickAdd 配置",
+        "闪念配置"
+      ]
+    },
+    {
+      "code": "refresh",
+      "explain": "重新读取 QuickAdd 配置并刷新 uTools 动态指令",
+      "cmds": [
+        "刷新 QuickAdd",
+        "同步 QuickAdd 指令"
+      ]
+    }
+  ]
+}

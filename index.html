@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Obsidian QuickAdd</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main id="app">
+      <section id="choice-view" class="panel hidden">
+        <div class="eyebrow">QuickAdd Choice</div>
+        <h1 id="choice-title">输入内容</h1>
+        <p id="choice-description" class="muted"></p>
+        <label class="field">
+          <span>传给 QuickAdd 的变量名</span>
+          <input id="choice-variable" autocomplete="off" spellcheck="false" />
+        </label>
+        <label class="field">
+          <span>内容</span>
+          <textarea id="choice-value" rows="6" placeholder="输入要写入 Obsidian 的内容，Ctrl/Command + Enter 执行"></textarea>
+        </label>
+        <div class="actions">
+          <button id="run-choice" class="primary">执行 QuickAdd</button>
+          <button id="open-settings">打开配置</button>
+        </div>
+        <p id="choice-status" class="status"></p>
+      </section>
+
+      <section id="settings-view" class="panel hidden">
+        <div class="eyebrow">Settings</div>
+        <h1>Obsidian QuickAdd</h1>
+        <p class="muted">选择或填写 Obsidian vault，插件会读取该 vault 中 QuickAdd 的配置，并把 choice 注册为 uTools 指令。</p>
+
+        <div class="grid">
+          <label class="field">
+            <span>已检测到的 Vault</span>
+            <select id="detected-vaults">
+              <option value="">手动填写</option>
+            </select>
+          </label>
+          <button id="detect-vaults" class="inline-button">重新检测</button>
+        </div>
+
+        <label class="field">
+          <span>Vault 名称或 ID</span>
+          <input id="vault-name" placeholder="例如 Test Vault" autocomplete="off" spellcheck="false" />
+        </label>
+        <label class="field">
+          <span>Vault 路径</span>
+          <input id="vault-path" placeholder="例如 C:\Users\You\Documents\Vault" autocomplete="off" spellcheck="false" />
+        </label>
+        <label class="field">
+          <span>默认 QuickAdd 变量名</span>
+          <input id="default-variable" placeholder="value" autocomplete="off" spellcheck="false" />
+          <small>URI 参数会生成为 <code>value-变量名=输入内容</code>。若 QuickAdd 使用 <code>{{VALUE:value}}</code>，这里保持 <code>value</code> 即可。</small>
+        </label>
+
+        <div class="actions">
+          <button id="save-settings" class="primary">保存并刷新指令</button>
+          <button id="refresh-choices">只刷新 choices</button>
+          <button id="open-quickadd-config">打开 QuickAdd 配置文件</button>
+        </div>
+        <p id="settings-status" class="status"></p>
+
+        <section class="choices">
+          <div class="choices-header">
+            <h2>已加载 Choices</h2>
+            <span id="choice-count" class="badge">0</span>
+          </div>
+          <div id="choice-list" class="choice-list empty">暂无 choices，请先保存 vault 配置。</div>
+        </section>
+      </section>
+    </main>
+    <script src="./renderer.js"></script>
+  </body>
+</html>
