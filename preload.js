@@ -166,7 +166,7 @@ function registerChoiceFeatures(settings) {
     window.utools.setFeature({
       code,
       explain: `在 ${vaultLabel} 中执行 QuickAdd: ${choice.name}`,
-      icon: "logo.svg",
+      icon: "quickadd.png",
       cmds: [
         choice.name,
         `QuickAdd ${choice.name}`,
