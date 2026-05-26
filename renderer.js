@@ -182,7 +182,6 @@ function bindEvents() {
 
   elements.detectVaults.addEventListener("click", () => {
     loadDetectedVaults();
-    setStatus(elements.settingsStatus, `已检测到 ${detectedVaults.length} 个 vault。`);
   });
 
   elements.saveSettings.addEventListener("click", saveSettings);

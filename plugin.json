@@ -12,9 +12,7 @@
       "code": "settings",
       "explain": "配置 Obsidian vault 并同步 QuickAdd choices",
       "cmds": [
-        "Obsidian QuickAdd",
-        "QuickAdd 配置",
-        "闪念配置"
+        "Obsidian QuickAdd"
       ]
     }
   ]

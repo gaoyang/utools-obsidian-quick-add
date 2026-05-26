@@ -71,8 +71,13 @@ code {
   display: none;
 }
 
+.title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
 .eyebrow {
-  margin-bottom: 6px;
   color: var(--primary-hover);
   font-size: 12px;
   font-weight: 700;
@@ -93,6 +98,10 @@ h2 {
 .muted,
 small {
   color: var(--muted);
+}
+
+.muted {
+  margin: 4px 0 10px;
 }
 
 .field {
@@ -132,6 +141,10 @@ textarea:focus {
   grid-template-columns: 1fr auto;
   gap: 12px;
   align-items: end;
+}
+
+.grid .field {
+  margin-top: 0;
 }
 
 .inline-button {

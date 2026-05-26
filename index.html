@@ -9,8 +9,10 @@
   <body>
     <main id="app">
       <section id="choice-view" class="panel hidden">
-        <div class="eyebrow">QuickAdd Choice</div>
-        <h1 id="choice-title">输入内容</h1>
+        <div class="title-row">
+          <h1 id="choice-title">输入内容</h1>
+          <div class="eyebrow">QuickAdd Choice</div>
+        </div>
         <p id="choice-description" class="muted"></p>
         <label class="field">
           <span>传给 QuickAdd 的变量名</span>
@@ -27,8 +29,10 @@
       </section>
 
       <section id="settings-view" class="panel hidden">
-        <div class="eyebrow">Settings</div>
-        <h1>Obsidian QuickAdd</h1>
+        <div class="title-row">
+          <h1>Obsidian QuickAdd</h1>
+          <div class="eyebrow">Settings</div>
+        </div>
         <p class="muted">
           选择或填写 Obsidian vault，插件将自动读取 vault 中 QuickAdd 配置的 choice 注册为 uTools 指令。
           <br>还没有安装 QuickAdd 插件？请先前往 https://quickadd.obsidian.guide 安装并配置。
@@ -61,7 +65,7 @@
         </label>
 
         <div class="actions">
-          <button id="save-settings" class="primary">刷新指令</button>
+          <button id="save-settings" class="primary">刷新并注册指令</button>
           <p id="settings-status" class="status"></p>
         </div>
 
