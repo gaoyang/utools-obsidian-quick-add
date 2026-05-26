@@ -163,6 +163,8 @@ function saveSettings() {
     renderChoices(settings.choices || []);
     setStatus(elements.settingsStatus, `已加载并注册 ${settings.choices.length} 个 QuickAdd 指令。`);
   } catch (error) {
+    const settings = bridge.loadSettings();
+    renderChoices(settings.choices || []);
     setStatus(elements.settingsStatus, error.message, true);
   }
 }
@@ -175,6 +177,7 @@ function bindEvents() {
       elements.vaultPath.value = vault.path;
     }
     updateManualVaultVisibility();
+    if (vault) saveSettings();
   });
 
   elements.detectVaults.addEventListener("click", () => {

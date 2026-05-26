@@ -145,11 +145,7 @@ function removeOldFeatures(featureCodes) {
   if (!Array.isArray(featureCodes) || featureCodes.length === 0) return;
   if (window.utools && typeof window.utools.removeFeature === "function") {
     const dynamicCodes = featureCodes.filter((code) => !STATIC_CODES.has(code));
-    try {
-      window.utools.removeFeature(dynamicCodes);
-    } catch (error) {
-      dynamicCodes.forEach((code) => window.utools.removeFeature(code));
-    }
+    dynamicCodes.forEach((code) => window.utools.removeFeature(code));
   }
 }
 
@@ -183,14 +179,25 @@ function registerChoiceFeatures(settings) {
   return Object.assign({}, settings, { featureMap, featureCodes });
 }
 
+function clearChoiceFeatures(settings) {
+  removeOldFeatures(settings.featureCodes);
+  return writeSettings(Object.assign({}, settings, {
+    choices: [],
+    featureMap: {},
+    featureCodes: []
+  }));
+}
+
 function refreshChoices(inputSettings) {
   const current = Object.assign(readSettings(), inputSettings || {});
   if (!current.vaultPath) {
+    clearChoiceFeatures(current);
     throw new Error("请先配置 vault 路径。");
   }
 
   const configPath = getQuickAddConfigPath(current.vaultPath);
   if (!fs.existsSync(configPath)) {
+    clearChoiceFeatures(current);
     throw new Error(`未找到 QuickAdd 配置文件：${configPath}`);
   }
 
