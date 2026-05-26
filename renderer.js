@@ -12,6 +12,7 @@ const elements = {
   choiceStatus: document.querySelector("#choice-status"),
   detectedVaults: document.querySelector("#detected-vaults"),
   detectVaults: document.querySelector("#detect-vaults"),
+  manualVaultFields: document.querySelector("#manual-vault-fields"),
   vaultName: document.querySelector("#vault-name"),
   vaultPath: document.querySelector("#vault-path"),
   defaultVariable: document.querySelector("#default-variable"),
@@ -78,6 +79,19 @@ function renderVaultOptions(vaults) {
     if (vault.path === currentPath) option.selected = true;
     elements.detectedVaults.appendChild(option);
   });
+
+  updateManualVaultVisibility();
+}
+
+function getSelectedVault() {
+  if (elements.detectedVaults.value === "") return null;
+  const selectedIndex = Number(elements.detectedVaults.value);
+  return Number.isInteger(selectedIndex) ? detectedVaults[selectedIndex] : null;
+}
+
+function updateManualVaultVisibility() {
+  const hasSelectedVault = Boolean(getSelectedVault());
+  elements.manualVaultFields.classList.toggle("hidden", hasSelectedVault);
 }
 
 function loadDetectedVaults() {
@@ -156,10 +170,12 @@ function saveSettings() {
 
 function bindEvents() {
   elements.detectedVaults.addEventListener("change", () => {
-    const vault = detectedVaults[Number(elements.detectedVaults.value)];
-    if (!vault) return;
-    elements.vaultName.value = vault.name;
-    elements.vaultPath.value = vault.path;
+    const vault = getSelectedVault();
+    if (vault) {
+      elements.vaultName.value = vault.name;
+      elements.vaultPath.value = vault.path;
+    }
+    updateManualVaultVisibility();
   });
 
   elements.detectVaults.addEventListener("click", () => {
