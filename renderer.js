@@ -16,8 +16,6 @@ const elements = {
   vaultPath: document.querySelector("#vault-path"),
   defaultVariable: document.querySelector("#default-variable"),
   saveSettings: document.querySelector("#save-settings"),
-  refreshChoices: document.querySelector("#refresh-choices"),
-  openQuickAddConfig: document.querySelector("#open-quickadd-config"),
   settingsStatus: document.querySelector("#settings-status"),
   choiceCount: document.querySelector("#choice-count"),
   choiceList: document.querySelector("#choice-list")
@@ -156,20 +154,6 @@ function saveSettings() {
   }
 }
 
-function refreshChoices() {
-  try {
-    setStatus(elements.settingsStatus, "正在重新读取 QuickAdd 配置...");
-    const settings = bridge.refreshChoices();
-    elements.vaultName.value = settings.vaultName || "";
-    elements.vaultPath.value = settings.vaultPath || "";
-    elements.defaultVariable.value = settings.defaultVariableName || "value";
-    renderChoices(settings.choices || []);
-    setStatus(elements.settingsStatus, `已刷新 ${settings.choices.length} 个 QuickAdd 指令。`);
-  } catch (error) {
-    setStatus(elements.settingsStatus, error.message, true);
-  }
-}
-
 function bindEvents() {
   elements.detectedVaults.addEventListener("change", () => {
     const vault = detectedVaults[Number(elements.detectedVaults.value)];
@@ -184,22 +168,8 @@ function bindEvents() {
   });
 
   elements.saveSettings.addEventListener("click", saveSettings);
-  elements.refreshChoices.addEventListener("click", refreshChoices);
   elements.openSettings.addEventListener("click", () => renderSettings());
   elements.runChoice.addEventListener("click", runCurrentChoice);
-
-  elements.openQuickAddConfig.addEventListener("click", async () => {
-    try {
-      const result = await bridge.openQuickAddConfig();
-      if (result) {
-        setStatus(elements.settingsStatus, result, true);
-      } else {
-        setStatus(elements.settingsStatus, "已打开 QuickAdd 配置文件。");
-      }
-    } catch (error) {
-      setStatus(elements.settingsStatus, error.message, true);
-    }
-  });
 
   elements.choiceValue.addEventListener("keydown", (event) => {
     if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
