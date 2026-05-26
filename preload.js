@@ -170,7 +170,12 @@ function registerChoiceFeatures(settings) {
       cmds: [
         choice.name,
         `QuickAdd ${choice.name}`,
-        `闪念 ${choice.name}`
+        `闪念 ${choice.name}`,
+        {
+          type: "over",
+          label: choice.name,
+          minLength: 1
+        }
       ]
     });
   });
@@ -261,7 +266,7 @@ function getChoiceAction(action) {
     vaultName: settings.vaultName,
     vaultPath: settings.vaultPath,
     defaultVariableName: settings.defaultVariableName,
-    initialValue: action.type === "text" ? action.payload : ""
+    initialValue: action.type === "over" ? action.payload : ""
   };
 }
 
@@ -275,7 +280,7 @@ if (window.utools) {
     console.error("[obsidian-quickadd] register features failed", error);
   }
 
-  window.utools.onPluginEnter((action) => {
+  window.utools.onPluginEnter(async (action) => {
     try {
       if (action.code === "refresh") {
         const settings = refreshChoices();
@@ -285,6 +290,16 @@ if (window.utools) {
       }
 
       const choiceAction = getChoiceAction(action);
+      if (choiceAction && action.type === "over" && String(action.payload || "").trim()) {
+        await runChoice({
+          code: action.code,
+          value: action.payload,
+          variableName: choiceAction.defaultVariableName
+        });
+        window.utools.showNotification(`已发送到 QuickAdd: ${choiceAction.choice.name}`);
+        return;
+      }
+
       publishAction(choiceAction || { view: "settings" });
     } catch (error) {
       publishAction({ view: "settings", error: error.message });
