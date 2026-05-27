@@ -49,13 +49,11 @@
         </div>
 
         <div id="manual-vault-fields">
-          <label class="field">
-            <span>Vault 名称或 ID</span>
-            <input id="vault-name" placeholder="例如 Test Vault" autocomplete="off" spellcheck="false" />
-          </label>
+          <input id="vault-name" type="hidden" />
           <label class="field">
             <span>Vault 路径</span>
             <input id="vault-path" placeholder="例如 C:\Users\You\Documents\Vault" autocomplete="off" spellcheck="false" />
+            <small>手动填写时会自动使用路径最后一级文件夹名作为 Vault 名称。</small>
           </label>
         </div>
         <label class="field">

@@ -7,7 +7,7 @@
 
 ## 特性
 
-- 自动读取 Obsidian vault 列表，也支持手动填写 vault 名称和路径
+- 自动读取 Obsidian vault 列表，也支持手动填写 vault 路径
 - 将 QuickAdd choices 动态注册为 uTools 指令
 - 支持在 uTools 主输入框输入内容后直接选择 QuickAdd choice 执行
 - 支持自定义 QuickAdd 变量名，例如 `{{VALUE:value}}`

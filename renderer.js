@@ -155,9 +155,10 @@ async function runCurrentChoice() {
 function saveSettings() {
   try {
     setStatus(elements.settingsStatus, "正在保存并刷新 QuickAdd 指令...");
+    const selectedVault = getSelectedVault();
     const settings = bridge.saveSettings({
-      vaultName: elements.vaultName.value.trim(),
-      vaultPath: elements.vaultPath.value.trim(),
+      vaultName: selectedVault ? selectedVault.name : "",
+      vaultPath: selectedVault ? selectedVault.path : elements.vaultPath.value.trim(),
       defaultVariableName: elements.defaultVariable.value.trim() || "value"
     });
     renderChoices(settings.choices || []);
