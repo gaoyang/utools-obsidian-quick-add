@@ -53,11 +53,26 @@ function readJsonFile(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
-function detectVaults() {
-  const appData = process.env.APPDATA;
-  if (!appData) return [];
+function getObsidianConfigPath() {
+  if (process.platform === "win32") {
+    const appData = process.env.APPDATA;
+    return appData ? path.join(appData, "obsidian", "obsidian.json") : "";
+  }
 
-  const obsidianConfigPath = path.join(appData, "obsidian", "obsidian.json");
+  const homeDir = process.env.HOME;
+  if (!homeDir) return "";
+
+  if (process.platform === "darwin") {
+    return path.join(homeDir, "Library", "Application Support", "obsidian", "obsidian.json");
+  }
+
+  const configHome = process.env.XDG_CONFIG_HOME || path.join(homeDir, ".config");
+  return path.join(configHome, "obsidian", "obsidian.json");
+}
+
+function detectVaults() {
+  const obsidianConfigPath = getObsidianConfigPath();
+  if (!obsidianConfigPath) return [];
   if (!fs.existsSync(obsidianConfigPath)) return [];
 
   const config = readJsonFile(obsidianConfigPath);
